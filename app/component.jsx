@@ -1,4 +1,4 @@
-import './component.css';
+import "./variables.scss";
 import React from 'react';
 
 export default React.createClass({
