@@ -1,6 +1,7 @@
 var path = require('path');
 var node_modules = path.resolve(__dirname, 'node_modules');
 var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
+var webpack = require('webpack');
 
 var config = {
     entry: [
@@ -29,7 +30,14 @@ var config = {
             loader: 'style!css!sass'
         }],
         noParse: [pathToReact]
-    }
+    },
+    plugins: [
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: { warnings: false },
+        })
+    ]
 };
 
 module.exports = config;
